@@ -1,4 +1,5 @@
 import puppeteer from 'puppeteer';
+import { inserirProduto } from './dynamo.js';
 
 export async function scrap_ThreeItens(category: string, link: string) {
     //Responsavel por retornar os 3 produtos mais vendidos dessa categoria
@@ -9,25 +10,41 @@ export async function scrap_ThreeItens(category: string, link: string) {
     await page.waitForSelector('div._cDEzb_p13n-sc-css-line-clamp-3_g3dy1');
 
     const result = await page.evaluate(() => {
-        const items: { name: string, link: string }[] = [];
-        document.querySelectorAll('div._cDEzb_p13n-sc-css-line-clamp-3_g3dy1').forEach((item, index) => {
-            if (index < 3) {
-                const itemName = item.textContent?.trim() || "Sem título";
-                const itemLink = item.closest('a')?.getAttribute('href') || "#";
-                items.push({ 
+        const products: { name: string, price: string, rating: string, rank: number, link: string }[] = [];
+        
+        document.querySelectorAll('div.p13n-sc-uncoverable-faceout').forEach((onlyItem, index) => {
+            if(index < 3) {
+                const itemName = onlyItem.querySelector('div._cDEzb_p13n-sc-css-line-clamp-3_g3dy1')?.textContent?.trim() || "Sem título";
+                const itemLink = onlyItem.querySelector('a')?.getAttribute('href') || "#";
+                const itemPrice = onlyItem.querySelector('span[class*="price"], span.a-price-whole')?.textContent?.trim() || "Preço não encontrado";
+                const itemRating = onlyItem.querySelector('span.a-icon-alt')?.textContent?.trim() || "Sem avaliação";
+                const itemRank = index + 1;
+
+                // Adiciona o produto à lista de products
+                products.push({
                     name: itemName,
+                    price: itemPrice,
+                    rating: itemRating,
+                    rank: itemRank,
                     link: itemLink
                 });
             }
         });
 
-        return items;
+        return products;
     });
 
-    console.log(result)
+    //inserir os produtos no banco de dados
+    for(let product_aux of result) 
+    {
+        await inserirProduto('ProdutosMaisVendidosPorCategoria', category, product_aux);
+    }
+
+    //console.log(result);
 
     await browser.close();
     return result;
+
 }
 
 export async function scrap_categories() {

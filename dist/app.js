@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { scrap_categories, scrap_ThreeItens } from './scrap.js';
 import { getNumberInput } from './functions.js';
-import { criarTabelaSeNaoExistir } from './dynamo.js';
+import { criarTabela } from './dynamo.js';
 export function main() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -17,12 +17,10 @@ export function main() {
             const categories = yield scrap_categories();
             const maxCategories = categories.length;
             const userInput = yield getNumberInput(maxCategories);
-            // console.log("Você digitou:", userInput);
-            console.log(`Categoria escolhida: ${categories[userInput - 1].category}`);
-            scrap_ThreeItens(categories[userInput - 1].category, categories[userInput - 1].link);
-            // Chama a função para criar a tabela, passando o nome da tabela
-            const nomeDaTabela = 'ProdutosMaisVendidosPorCategoria'; // Pode ser o nome fixo ou dinâmico
-            yield criarTabelaSeNaoExistir(nomeDaTabela);
+            const index = userInput - 1;
+            console.log(`Categoria escolhida: ${categories[index].category}`);
+            const result = yield scrap_ThreeItens(categories[index].category, categories[index].link);
+            yield criarTabela('ProdutosMaisVendidosPorCategoria');
         }
         catch (error) {
             console.error('Erro ao executar o scraping:', error);
