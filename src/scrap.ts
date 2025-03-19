@@ -1,7 +1,7 @@
 import puppeteer from 'puppeteer';
 
 export async function scrap_ThreeItens(category: string, link: string) {
-    //Responsavel por retornas os 3 produtos mais vendidos dessa categoria
+    //Responsavel por retornar os 3 produtos mais vendidos dessa categoria
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
     const site = 'https://www.amazon.com.br' + link;
@@ -24,7 +24,7 @@ export async function scrap_ThreeItens(category: string, link: string) {
         return items;
     });
 
-    //console.log(result)
+    console.log(result)
 
     await browser.close();
     return result;

@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import puppeteer from 'puppeteer';
 export function scrap_ThreeItens(category, link) {
     return __awaiter(this, void 0, void 0, function* () {
-        //Responsavel por retornas os 3 produtos mais vendidos dessa categoria
+        //Responsavel por retornar os 3 produtos mais vendidos dessa categoria
         const browser = yield puppeteer.launch({ headless: true });
         const page = yield browser.newPage();
         const site = 'https://www.amazon.com.br' + link;
@@ -31,7 +31,7 @@ export function scrap_ThreeItens(category, link) {
             });
             return items;
         });
-        //console.log(result)
+        console.log(result);
         yield browser.close();
         return result;
     });
