@@ -1,13 +1,18 @@
-import {scrap} from './scrap.js'; 
+import { scrap_categories, scrap_ThreeItens } from './scrap.js';
+import { getNumberInput } from './functions.js';
 
-export async function index() {
+export async function main() {
     try {
-        // Busca as categorias e os links dos produtos mais vendidos no site da Amazon
-        const categories = await scrap(); 
-        console.log('Categorias encontradas:', categories); 
+        console.log("Carregando categorias...");
+        const categories = await scrap_categories(); 
+        const maxCategories = categories.length;
+        const userInput = await getNumberInput(maxCategories);
+        // console.log("Você digitou:", userInput);
+        console.log(`Categoria escolhida: ${categories[userInput - 1].category}`);
+        scrap_ThreeItens(categories[userInput - 1].category, categories[userInput - 1].link);
     } catch (error) {
         console.error('Erro ao executar o scraping:', error);
     }
 }
 
-index();
+main();
