@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",                    // Diretório de saída para os arquivos .js
+    "rootDir": "./src",                    // Diretório de entrada para os arquivos .ts  
+    "target": "es2016",                    // Versão do JavaScript que será emitida
+    "module": "ESNext",                    // Usar ES Modules (import/export)
+    "esModuleInterop": true,                    // Interoperabilidade com módulos CommonJS
+    "forceConsistentCasingInFileNames": true,  // Verificar se a capitalização está correta nos imports
+    "removeComments": true,                    // Remover comentários do código compilado
+    "skipLibCheck": true                   // Ignorar checagem de tipos nas bibliotecas
+  },
+  "include": ["src/**/*.ts"],              // Incluir arquivos .ts na pasta src
+  "exclude": ["node_modules"]              // Excluir a pasta node_modules da compilação
+}
