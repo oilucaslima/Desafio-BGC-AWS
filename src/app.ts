@@ -1,23 +1,13 @@
-import puppeteer from 'puppeteer';
+import {scrap} from './scrap.js'; 
 
-export async function scrap() {
-    const browser = await puppeteer.launch({ headless: true });
-    const page = await browser.newPage();
-    await page.goto('http://books.toscrape.com/');
-  //  await page.waitForNetworkIdle();
+export async function index() {
+    try {
+        // Busca as categorias e os links dos produtos mais vendidos no site da Amazon
+        const categories = await scrap(); 
+        console.log('Categorias encontradas:', categories); 
+    } catch (error) {
+        console.error('Erro ao executar o scraping:', error);
+    }
+}
 
-    const result = await page.evaluate(() => {
-        return document;
-        // const pageTitle = document.title;
-        // return pageTitle;  // Retornando o título da página
-    });
-    console.log(result);
-
-    //console.log('Page Title:', result);
-
-    await browser.close();
-};
-
-scrap();
-
-console.log('Hello World');
+index();

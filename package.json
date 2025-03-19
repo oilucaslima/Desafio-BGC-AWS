@@ -1,11 +1,12 @@
 {
   "name": "desafio-bgc",
   "version": "1.0.0",
-  "main": "dist/app.js",  
+  "main": "dist/app.js",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/app.js",  
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npx tsc && node dist/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "ts-node-dev --esm src/app.ts"
   },
   "keywords": [],
   "author": "",
@@ -18,6 +19,7 @@
   "type": "module",
   "devDependencies": {
     "@types/express": "^5.0.0",
+    "ts-node-dev": "^2.0.0",
     "tsx": "^4.19.3",
     "typescript": "^5.8.2"
   }
