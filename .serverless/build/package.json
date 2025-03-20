@@ -1,0 +1,16 @@
+{
+  "name": "desafio-bgc",
+  "version": "1.0.0",
+  "main": "dist/app.js",
+  "scripts": {
+    "build": "esbuild src/handlers/handler.ts --bundle --platform=node --target=node18 --outfile=dist/handler.js",
+    "start": "npx tsc && node dist/services/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "ts-node-dev --esm src/app.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {}
+}

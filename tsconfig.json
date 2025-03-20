@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
-    "outDir": "./dist",
-    "rootDir": "./src",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "target": "ES2020",
-    "esModuleInterop": true,
-    "strict": true,
-    "types": ["@types/aws-lambda"]
+    "outDir": "./dist",                // Diretório de saída
+    "rootDir": "./src",                // Diretório de entrada para arquivos TS
+    "module": "CommonJS",              // Para gerar módulos CommonJS
+    "moduleResolution": "node",        // Usar resolução de módulos do Node.js (padrão para CommonJS)
+    "target": "ES2020",                // Definir a versão alvo do JavaScript
+    "esModuleInterop": true,           // Habilitar interoperação entre módulos ESM e CommonJS
+    "strict": true,                    // Ativar verificação estrita de tipos
+    "types": ["@types/aws-lambda"]    // Tipos para AWS Lambda
   },
-  "include": ["src/**/*.ts", "src/handlers/handler.ts"],
-  "exclude": ["node_modules"]
+  "include": ["src/**/*.ts"],          // Incluir todos os arquivos TypeScript dentro da pasta src
+  "exclude": ["node_modules"]          // Excluir node_modules
 }
