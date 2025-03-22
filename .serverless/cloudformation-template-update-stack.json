@@ -8,6 +8,12 @@
         "LogGroupName": "/aws/lambda/desafio-bgc-dev-find"
       }
     },
+    "SetLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/desafio-bgc-dev-set"
+      }
+    },
     "IamRoleLambdaExecution": {
       "Type": "AWS::IAM::Role",
       "Properties": {
@@ -72,6 +78,16 @@
                     "dynamodb:GetItem"
                   ],
                   "Resource": "arn:aws:dynamodb:us-east-1:*:table/ProdutosMaisVendidosPorCategoria"
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "lambda:InvokeFunction"
+                  ],
+                  "Resource": [
+                    "arn:aws:lambda:us-east-1:*:function:desafio-bgc-dev-find",
+                    "arn:aws:lambda:us-east-1:*:function:desafio-bgc-dev-set"
+                  ]
                 }
               ]
             }
@@ -98,7 +114,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-us-east-1-19c91376-897c",
-          "S3Key": "serverless/desafio-bgc/dev/1742674031426-2025-03-22T20:07:11.426Z/desafio-bgc.zip"
+          "S3Key": "serverless/desafio-bgc/dev/1742676155749-2025-03-22T20:42:35.749Z/desafio-bgc.zip"
         },
         "Handler": "src/handlers/handler.find",
         "Runtime": "nodejs16.x",
@@ -121,14 +137,52 @@
         "FindLogGroup"
       ]
     },
-    "FindLambdaVersionzynqBgEkVIsrdHspfJ7Q6pGVlKDGKkI24LvmE19YAM": {
+    "SetLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "serverless-framework-deployments-us-east-1-19c91376-897c",
+          "S3Key": "serverless/desafio-bgc/dev/1742676155749-2025-03-22T20:42:35.749Z/desafio-bgc.zip"
+        },
+        "Handler": "src/handlers/handler.set",
+        "Runtime": "nodejs16.x",
+        "FunctionName": "desafio-bgc-dev-set",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Environment": {
+          "Variables": {
+            "NODE_OPTIONS": "--enable-source-maps"
+          }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "SetLogGroup"
+      ]
+    },
+    "FindLambdaVersionIBTkkLLqo1i4A2dVgc4GnHxVIEfuUlkW82K4mS1dkZI": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "FindLambdaFunction"
         },
-        "CodeSha256": "79SysZSCZoJOEL2B3SxzHA89yNGbXKqVaLbvZezV4Aw="
+        "CodeSha256": "yx8IWmVWWsXJ87N+1j/DMZ6t/1mWMpYt22YWU1n1aNA="
+      }
+    },
+    "SetLambdaVersionJC4oYIPdjx0wWY7nM4rqKVaZzgVDOvNGVbUbOwjPU": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "SetLambdaFunction"
+        },
+        "CodeSha256": "yx8IWmVWWsXJ87N+1j/DMZ6t/1mWMpYt22YWU1n1aNA="
       }
     },
     "ApiGatewayRestApi": {
@@ -153,6 +207,21 @@
           ]
         },
         "PathPart": "find",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayResourceSet": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "ApiGatewayRestApi",
+            "RootResourceId"
+          ]
+        },
+        "PathPart": "set",
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
         }
@@ -204,7 +273,53 @@
         "FindLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1742674022482": {
+    "ApiGatewayMethodSetPost": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "POST",
+        "RequestParameters": {},
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceSet"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "SetLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        },
+        "MethodResponses": []
+      },
+      "DependsOn": [
+        "SetLambdaPermissionApiGateway"
+      ]
+    },
+    "ApiGatewayDeployment1742676146762": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -213,7 +328,8 @@
         "StageName": "dev"
       },
       "DependsOn": [
-        "ApiGatewayMethodFindGet"
+        "ApiGatewayMethodFindGet",
+        "ApiGatewayMethodSetPost"
       ]
     },
     "FindLambdaPermissionApiGateway": {
@@ -222,6 +338,43 @@
         "FunctionName": {
           "Fn::GetAtt": [
             "FindLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "/*/*"
+            ]
+          ]
+        }
+      }
+    },
+    "SetLambdaPermissionApiGateway": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "SetLambdaFunction",
             "Arn"
           ]
         },
@@ -264,10 +417,19 @@
     "FindLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "FindLambdaVersionzynqBgEkVIsrdHspfJ7Q6pGVlKDGKkI24LvmE19YAM"
+        "Ref": "FindLambdaVersionIBTkkLLqo1i4A2dVgc4GnHxVIEfuUlkW82K4mS1dkZI"
       },
       "Export": {
         "Name": "sls-desafio-bgc-dev-FindLambdaFunctionQualifiedArn"
+      }
+    },
+    "SetLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "SetLambdaVersionJC4oYIPdjx0wWY7nM4rqKVaZzgVDOvNGVbUbOwjPU"
+      },
+      "Export": {
+        "Name": "sls-desafio-bgc-dev-SetLambdaFunctionQualifiedArn"
       }
     },
     "ServiceEndpoint": {

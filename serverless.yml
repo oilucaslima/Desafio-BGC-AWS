@@ -1,7 +1,5 @@
 service: desafio-bgc
 
-frameworkVersion: '4'
-
 provider:
   name: aws
   runtime: nodejs16.x
@@ -12,6 +10,12 @@ provider:
       Action:
         - dynamodb:GetItem
       Resource: arn:aws:dynamodb:${self:provider.region}:*:table/ProdutosMaisVendidosPorCategoria
+    - Effect: Allow
+      Action:
+        - lambda:InvokeFunction
+      Resource:
+        - arn:aws:lambda:${self:provider.region}:*:function:${self:service}-${self:provider.stage}-find
+        - arn:aws:lambda:${self:provider.region}:*:function:${self:service}-${self:provider.stage}-set
 
 functions:
   find:
@@ -20,3 +24,10 @@ functions:
       - http:
           path: find
           method: get
+          
+  set:
+    handler: src/handlers/handler.set
+    events:
+      - http:
+          path: set
+          method: post
