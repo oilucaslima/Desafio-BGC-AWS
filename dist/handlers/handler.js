@@ -36,18 +36,17 @@ const find = async (event, context, callback) => {
         }
         // Processa os itens do DynamoDB para um formato mais simples
         const products = result.Items.map(item => ({
-            link: item.link?.S || 'Sem link',
-            price: item.price?.S || 'Sem preço',
             name: item.name?.S || 'Sem título',
+            link: 'https://www.amazon.com.br' + item.link?.S || 'Sem link',
+            price: item.price?.S || 'Sem preço',
             rating: item.rating?.S || 'Sem avaliação',
-            categoryId: item.categoryId?.S || 'Sem categoria',
             rank: item.rank?.N || 'Sem rank',
         }));
         // Resposta organizada
         const response = {
             statusCode: 200,
             body: JSON.stringify({
-                message: categoryId,
+                category: categoryId,
                 products: products,
             }),
         };

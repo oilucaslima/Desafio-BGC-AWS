@@ -53,12 +53,13 @@ async function scrap_categories() {
         const sections = [];
         document.querySelectorAll('div[role="treeitem"] a').forEach((category) => {
             sections.push({
-                category: category.textContent?.trim() || "Sem título",
+                category: category.textContent?.trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "") || "Sem título",
                 link: category.getAttribute('href') || "#"
             });
         });
         return sections;
     });
+    console.log(categories);
     await browser.close();
     return categories;
 }

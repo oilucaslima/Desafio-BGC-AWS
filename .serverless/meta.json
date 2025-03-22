@@ -1,10 +1,10 @@
 {
-  "/home/lucas/Documentos/Desafio-BGC/serverless.yml": {
+  "/home/lucas/Documentos/Desafio-BGC-AWS/serverless.yml": {
     "versionFramework": "4.9.0",
-    "servicePath": "/home/lucas/Documentos/Desafio-BGC/serverless.yml",
+    "servicePath": "/home/lucas/Documentos/Desafio-BGC-AWS/serverless.yml",
     "serviceConfigFileName": "serverless.yml",
     "service": {
-      "service": "my-lambda-project",
+      "service": "desafio-bgc",
       "frameworkVersion": "4",
       "provider": {
         "name": "aws",
@@ -28,7 +28,7 @@
             "FindLogGroup": {
               "Type": "AWS::Logs::LogGroup",
               "Properties": {
-                "LogGroupName": "/aws/lambda/my-lambda-project-dev-find"
+                "LogGroupName": "/aws/lambda/desafio-bgc-dev-find"
               }
             },
             "IamRoleLambdaExecution": {
@@ -56,7 +56,7 @@
                       "Fn::Join": [
                         "-",
                         [
-                          "my-lambda-project",
+                          "desafio-bgc",
                           "dev",
                           "lambda"
                         ]
@@ -74,7 +74,7 @@
                           ],
                           "Resource": [
                             {
-                              "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/my-lambda-project-dev*:*"
+                              "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/desafio-bgc-dev*:*"
                             }
                           ]
                         },
@@ -85,7 +85,7 @@
                           ],
                           "Resource": [
                             {
-                              "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/my-lambda-project-dev*:*:*"
+                              "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/desafio-bgc-dev*:*:*"
                             }
                           ]
                         },
@@ -105,7 +105,7 @@
                   "Fn::Join": [
                     "-",
                     [
-                      "my-lambda-project",
+                      "desafio-bgc",
                       "dev",
                       {
                         "Ref": "AWS::Region"
@@ -121,11 +121,11 @@
               "Properties": {
                 "Code": {
                   "S3Bucket": "serverless-framework-deployments-us-east-1-19c91376-897c",
-                  "S3Key": "serverless/my-lambda-project/dev/1742481700560-2025-03-20T14:41:40.560Z/my-lambda-project.zip"
+                  "S3Key": "serverless/desafio-bgc/dev/1742674031426-2025-03-22T20:07:11.426Z/desafio-bgc.zip"
                 },
                 "Handler": "src/handlers/handler.find",
                 "Runtime": "nodejs16.x",
-                "FunctionName": "my-lambda-project-dev-find",
+                "FunctionName": "desafio-bgc-dev-find",
                 "MemorySize": 1024,
                 "Timeout": 6,
                 "Environment": {
@@ -144,20 +144,20 @@
                 "FindLogGroup"
               ]
             },
-            "FindLambdaVersionhSN9zdbxGqB9DM5PCh2gCXmUGzKIrv0DYhjZm9hVY": {
+            "FindLambdaVersionzynqBgEkVIsrdHspfJ7Q6pGVlKDGKkI24LvmE19YAM": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "FindLambdaFunction"
                 },
-                "CodeSha256": "bMnUp9nPJO1rqlXR5UPbhVaU8e/mMAX2e1/pq2aKtK8="
+                "CodeSha256": "79SysZSCZoJOEL2B3SxzHA89yNGbXKqVaLbvZezV4Aw="
               }
             },
             "ApiGatewayRestApi": {
               "Type": "AWS::ApiGateway::RestApi",
               "Properties": {
-                "Name": "dev-my-lambda-project",
+                "Name": "dev-desafio-bgc",
                 "EndpointConfiguration": {
                   "Types": [
                     "EDGE"
@@ -227,7 +227,7 @@
                 "FindLambdaPermissionApiGateway"
               ]
             },
-            "ApiGatewayDeployment1742481693578": {
+            "ApiGatewayDeployment1742674022482": {
               "Type": "AWS::ApiGateway::Deployment",
               "Properties": {
                 "RestApiId": {
@@ -281,16 +281,16 @@
             "ServerlessDeploymentBucketName": {
               "Value": "serverless-framework-deployments-us-east-1-19c91376-897c",
               "Export": {
-                "Name": "sls-my-lambda-project-dev-ServerlessDeploymentBucketName"
+                "Name": "sls-desafio-bgc-dev-ServerlessDeploymentBucketName"
               }
             },
             "FindLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "FindLambdaVersionhSN9zdbxGqB9DM5PCh2gCXmUGzKIrv0DYhjZm9hVY"
+                "Ref": "FindLambdaVersionzynqBgEkVIsrdHspfJ7Q6pGVlKDGKkI24LvmE19YAM"
               },
               "Export": {
-                "Name": "sls-my-lambda-project-dev-FindLambdaFunctionQualifiedArn"
+                "Name": "sls-desafio-bgc-dev-FindLambdaFunctionQualifiedArn"
               }
             },
             "ServiceEndpoint": {
@@ -316,7 +316,7 @@
                 ]
               },
               "Export": {
-                "Name": "sls-my-lambda-project-dev-ServiceEndpoint"
+                "Name": "sls-desafio-bgc-dev-ServiceEndpoint"
               }
             }
           }
@@ -335,7 +335,7 @@
               }
             }
           ],
-          "name": "my-lambda-project-dev-find",
+          "name": "desafio-bgc-dev-find",
           "environment": {
             "NODE_OPTIONS": "--enable-source-maps"
           },
@@ -344,7 +344,7 @@
           "timeout": 6,
           "runtime": "nodejs16.x",
           "vpc": {},
-          "versionLogicalId": "FindLambdaVersionhSN9zdbxGqB9DM5PCh2gCXmUGzKIrv0DYhjZm9hVY"
+          "versionLogicalId": "FindLambdaVersionzynqBgEkVIsrdHspfJ7Q6pGVlKDGKkI24LvmE19YAM"
         }
       }
     },
@@ -370,7 +370,7 @@
           "FindLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
-              "LogGroupName": "/aws/lambda/my-lambda-project-dev-find"
+              "LogGroupName": "/aws/lambda/desafio-bgc-dev-find"
             }
           },
           "IamRoleLambdaExecution": {
@@ -398,7 +398,7 @@
                     "Fn::Join": [
                       "-",
                       [
-                        "my-lambda-project",
+                        "desafio-bgc",
                         "dev",
                         "lambda"
                       ]
@@ -416,7 +416,7 @@
                         ],
                         "Resource": [
                           {
-                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/my-lambda-project-dev*:*"
+                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/desafio-bgc-dev*:*"
                           }
                         ]
                       },
@@ -427,7 +427,7 @@
                         ],
                         "Resource": [
                           {
-                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/my-lambda-project-dev*:*:*"
+                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/desafio-bgc-dev*:*:*"
                           }
                         ]
                       },
@@ -447,7 +447,7 @@
                 "Fn::Join": [
                   "-",
                   [
-                    "my-lambda-project",
+                    "desafio-bgc",
                     "dev",
                     {
                       "Ref": "AWS::Region"
@@ -463,11 +463,11 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-us-east-1-19c91376-897c",
-                "S3Key": "serverless/my-lambda-project/dev/1742481700560-2025-03-20T14:41:40.560Z/my-lambda-project.zip"
+                "S3Key": "serverless/desafio-bgc/dev/1742674031426-2025-03-22T20:07:11.426Z/desafio-bgc.zip"
               },
               "Handler": "src/handlers/handler.find",
               "Runtime": "nodejs16.x",
-              "FunctionName": "my-lambda-project-dev-find",
+              "FunctionName": "desafio-bgc-dev-find",
               "MemorySize": 1024,
               "Timeout": 6,
               "Environment": {
@@ -486,20 +486,20 @@
               "FindLogGroup"
             ]
           },
-          "FindLambdaVersionhSN9zdbxGqB9DM5PCh2gCXmUGzKIrv0DYhjZm9hVY": {
+          "FindLambdaVersionzynqBgEkVIsrdHspfJ7Q6pGVlKDGKkI24LvmE19YAM": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "FindLambdaFunction"
               },
-              "CodeSha256": "bMnUp9nPJO1rqlXR5UPbhVaU8e/mMAX2e1/pq2aKtK8="
+              "CodeSha256": "79SysZSCZoJOEL2B3SxzHA89yNGbXKqVaLbvZezV4Aw="
             }
           },
           "ApiGatewayRestApi": {
             "Type": "AWS::ApiGateway::RestApi",
             "Properties": {
-              "Name": "dev-my-lambda-project",
+              "Name": "dev-desafio-bgc",
               "EndpointConfiguration": {
                 "Types": [
                   "EDGE"
@@ -569,7 +569,7 @@
               "FindLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1742481693578": {
+          "ApiGatewayDeployment1742674022482": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -623,16 +623,16 @@
           "ServerlessDeploymentBucketName": {
             "Value": "serverless-framework-deployments-us-east-1-19c91376-897c",
             "Export": {
-              "Name": "sls-my-lambda-project-dev-ServerlessDeploymentBucketName"
+              "Name": "sls-desafio-bgc-dev-ServerlessDeploymentBucketName"
             }
           },
           "FindLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "FindLambdaVersionhSN9zdbxGqB9DM5PCh2gCXmUGzKIrv0DYhjZm9hVY"
+              "Ref": "FindLambdaVersionzynqBgEkVIsrdHspfJ7Q6pGVlKDGKkI24LvmE19YAM"
             },
             "Export": {
-              "Name": "sls-my-lambda-project-dev-FindLambdaFunctionQualifiedArn"
+              "Name": "sls-desafio-bgc-dev-FindLambdaFunctionQualifiedArn"
             }
           },
           "ServiceEndpoint": {
@@ -658,7 +658,7 @@
               ]
             },
             "Export": {
-              "Name": "sls-my-lambda-project-dev-ServiceEndpoint"
+              "Name": "sls-desafio-bgc-dev-ServiceEndpoint"
             }
           }
         }
@@ -674,7 +674,7 @@
       "serviceProvider": null,
       "instanceParameters": null
     },
-    "serviceRawFile": "service: my-lambda-project\n\nframeworkVersion: '4'\n\nprovider:\n  name: aws\n  runtime: nodejs16.x\n  stage: dev\n  region: us-east-1\n  iamRoleStatements:\n    - Effect: Allow\n      Action:\n        - dynamodb:GetItem\n      Resource: arn:aws:dynamodb:${self:provider.region}:*:table/ProdutosMaisVendidosPorCategoria  # Ajuste para o nome correto da tabela\n\nfunctions:\n  find:\n    handler: src/handlers/handler.find\n    events:\n      - http:\n          path: find\n          method: get\n",
+    "serviceRawFile": "service: desafio-bgc\n\nframeworkVersion: '4'\n\nprovider:\n  name: aws\n  runtime: nodejs16.x\n  stage: dev\n  region: us-east-1\n  iamRoleStatements:\n    - Effect: Allow\n      Action:\n        - dynamodb:GetItem\n      Resource: arn:aws:dynamodb:${self:provider.region}:*:table/ProdutosMaisVendidosPorCategoria\n\nfunctions:\n  find:\n    handler: src/handlers/handler.find\n    events:\n      - http:\n          path: find\n          method: get\n",
     "command": [
       "deploy"
     ],
@@ -684,28 +684,28 @@
     "userId": "SrtYQ1SzLLPwgb6tDw",
     "userName": "devlucas",
     "serviceProviderAwsAccountId": "496201017689",
-    "serviceProviderAwsCfStackName": "my-lambda-project-dev",
-    "serviceProviderAwsCfStackId": "arn:aws:cloudformation:us-east-1:496201017689:stack/my-lambda-project-dev/cc80a840-057d-11f0-949d-0afff546b509",
-    "serviceProviderAwsCfStackCreated": "2025-03-20T11:23:50.954Z",
-    "serviceProviderAwsCfStackUpdated": "2025-03-20T14:39:36.963Z",
+    "serviceProviderAwsCfStackName": "desafio-bgc-dev",
+    "serviceProviderAwsCfStackId": "arn:aws:cloudformation:us-east-1:496201017689:stack/desafio-bgc-dev/208849f0-0756-11f0-9fd5-12ec7a6f0bf3",
+    "serviceProviderAwsCfStackCreated": "2025-03-22T19:44:54.394Z",
+    "serviceProviderAwsCfStackUpdated": "2025-03-22T19:57:52.457Z",
     "serviceProviderAwsCfStackStatus": "UPDATE_COMPLETE",
     "serviceProviderAwsCfStackOutputs": [
       {
         "OutputKey": "FindLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:496201017689:function:my-lambda-project-dev-find:20",
+        "OutputValue": "arn:aws:lambda:us-east-1:496201017689:function:desafio-bgc-dev-find:2",
         "Description": "Current Lambda function version",
-        "ExportName": "sls-my-lambda-project-dev-FindLambdaFunctionQualifiedArn"
+        "ExportName": "sls-desafio-bgc-dev-FindLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "ServiceEndpoint",
-        "OutputValue": "https://0zgn4qpnua.execute-api.us-east-1.amazonaws.com/dev",
+        "OutputValue": "https://tdj8fvi9rl.execute-api.us-east-1.amazonaws.com/dev",
         "Description": "URL of the service endpoint",
-        "ExportName": "sls-my-lambda-project-dev-ServiceEndpoint"
+        "ExportName": "sls-desafio-bgc-dev-ServiceEndpoint"
       },
       {
         "OutputKey": "ServerlessDeploymentBucketName",
         "OutputValue": "serverless-framework-deployments-us-east-1-19c91376-897c",
-        "ExportName": "sls-my-lambda-project-dev-ServerlessDeploymentBucketName"
+        "ExportName": "sls-desafio-bgc-dev-ServerlessDeploymentBucketName"
       }
     ],
     "compiledCloudFormationTemplate": {
@@ -715,7 +715,7 @@
         "FindLogGroup": {
           "Type": "AWS::Logs::LogGroup",
           "Properties": {
-            "LogGroupName": "/aws/lambda/my-lambda-project-dev-find"
+            "LogGroupName": "/aws/lambda/desafio-bgc-dev-find"
           }
         },
         "IamRoleLambdaExecution": {
@@ -743,7 +743,7 @@
                   "Fn::Join": [
                     "-",
                     [
-                      "my-lambda-project",
+                      "desafio-bgc",
                       "dev",
                       "lambda"
                     ]
@@ -761,7 +761,7 @@
                       ],
                       "Resource": [
                         {
-                          "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/my-lambda-project-dev*:*"
+                          "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/desafio-bgc-dev*:*"
                         }
                       ]
                     },
@@ -772,7 +772,7 @@
                       ],
                       "Resource": [
                         {
-                          "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/my-lambda-project-dev*:*:*"
+                          "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/desafio-bgc-dev*:*:*"
                         }
                       ]
                     },
@@ -792,7 +792,7 @@
               "Fn::Join": [
                 "-",
                 [
-                  "my-lambda-project",
+                  "desafio-bgc",
                   "dev",
                   {
                     "Ref": "AWS::Region"
@@ -808,11 +808,11 @@
           "Properties": {
             "Code": {
               "S3Bucket": "serverless-framework-deployments-us-east-1-19c91376-897c",
-              "S3Key": "serverless/my-lambda-project/dev/1742481700560-2025-03-20T14:41:40.560Z/my-lambda-project.zip"
+              "S3Key": "serverless/desafio-bgc/dev/1742674031426-2025-03-22T20:07:11.426Z/desafio-bgc.zip"
             },
             "Handler": "src/handlers/handler.find",
             "Runtime": "nodejs16.x",
-            "FunctionName": "my-lambda-project-dev-find",
+            "FunctionName": "desafio-bgc-dev-find",
             "MemorySize": 1024,
             "Timeout": 6,
             "Environment": {
@@ -831,20 +831,20 @@
             "FindLogGroup"
           ]
         },
-        "FindLambdaVersionhSN9zdbxGqB9DM5PCh2gCXmUGzKIrv0DYhjZm9hVY": {
+        "FindLambdaVersionzynqBgEkVIsrdHspfJ7Q6pGVlKDGKkI24LvmE19YAM": {
           "Type": "AWS::Lambda::Version",
           "DeletionPolicy": "Retain",
           "Properties": {
             "FunctionName": {
               "Ref": "FindLambdaFunction"
             },
-            "CodeSha256": "bMnUp9nPJO1rqlXR5UPbhVaU8e/mMAX2e1/pq2aKtK8="
+            "CodeSha256": "79SysZSCZoJOEL2B3SxzHA89yNGbXKqVaLbvZezV4Aw="
           }
         },
         "ApiGatewayRestApi": {
           "Type": "AWS::ApiGateway::RestApi",
           "Properties": {
-            "Name": "dev-my-lambda-project",
+            "Name": "dev-desafio-bgc",
             "EndpointConfiguration": {
               "Types": [
                 "EDGE"
@@ -914,7 +914,7 @@
             "FindLambdaPermissionApiGateway"
           ]
         },
-        "ApiGatewayDeployment1742481693578": {
+        "ApiGatewayDeployment1742674022482": {
           "Type": "AWS::ApiGateway::Deployment",
           "Properties": {
             "RestApiId": {
@@ -968,16 +968,16 @@
         "ServerlessDeploymentBucketName": {
           "Value": "serverless-framework-deployments-us-east-1-19c91376-897c",
           "Export": {
-            "Name": "sls-my-lambda-project-dev-ServerlessDeploymentBucketName"
+            "Name": "sls-desafio-bgc-dev-ServerlessDeploymentBucketName"
           }
         },
         "FindLambdaFunctionQualifiedArn": {
           "Description": "Current Lambda function version",
           "Value": {
-            "Ref": "FindLambdaVersionhSN9zdbxGqB9DM5PCh2gCXmUGzKIrv0DYhjZm9hVY"
+            "Ref": "FindLambdaVersionzynqBgEkVIsrdHspfJ7Q6pGVlKDGKkI24LvmE19YAM"
           },
           "Export": {
-            "Name": "sls-my-lambda-project-dev-FindLambdaFunctionQualifiedArn"
+            "Name": "sls-desafio-bgc-dev-FindLambdaFunctionQualifiedArn"
           }
         },
         "ServiceEndpoint": {
@@ -1003,7 +1003,7 @@
             ]
           },
           "Export": {
-            "Name": "sls-my-lambda-project-dev-ServiceEndpoint"
+            "Name": "sls-desafio-bgc-dev-ServiceEndpoint"
           }
         }
       }
