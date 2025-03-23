@@ -27,7 +27,7 @@ Abaixo estão alguns links importantes para ajudar na compreensão da tarefa e n
 - [Documentação da API](#)  
   Para acessar, inicie a aplicação e acesse `localhost:3000`. Certifique-se de que a porta esteja disponível antes de executar.
 
-- [Vídeo de Exemplificação](#)  
+- [Vídeo de Exemplificação](https://youtu.be/H2q9ihlAzmo)  
   Um vídeo explicativo sobre como utilizar o sistema e seus principais recursos.
 
 

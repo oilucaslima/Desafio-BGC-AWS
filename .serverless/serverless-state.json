@@ -136,7 +136,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-us-east-1-19c91376-897c",
-                "S3Key": "serverless/desafio-bgc/dev/1742739629361-2025-03-23T14:20:29.361Z/desafio-bgc.zip"
+                "S3Key": "serverless/desafio-bgc/dev/1742762663584-2025-03-23T20:44:23.584Z/desafio-bgc.zip"
               },
               "Handler": "src/handlers/get.find",
               "Runtime": "nodejs16.x",
@@ -164,7 +164,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-us-east-1-19c91376-897c",
-                "S3Key": "serverless/desafio-bgc/dev/1742739629361-2025-03-23T14:20:29.361Z/desafio-bgc.zip"
+                "S3Key": "serverless/desafio-bgc/dev/1742762663584-2025-03-23T20:44:23.584Z/desafio-bgc.zip"
               },
               "Handler": "src/handlers/post.set",
               "Runtime": "nodejs16.x",
@@ -187,24 +187,24 @@
               "SetLogGroup"
             ]
           },
-          "FindLambdaVersion6ljq3hn3qQEL1pOOpZVgeuOKv2MQTdMfTsbqKnfnLsU": {
+          "FindLambdaVersionThBQ5l9pMyy1aRbLVALW7dqLMOVelldgQc8Zork0UI": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "FindLambdaFunction"
               },
-              "CodeSha256": "rcQJMO8KQ3aTwsJAzxE/7Ey3FvKl9CQdFykaXtiaefs="
+              "CodeSha256": "1YAm4uDKsAkw+rc8MX51ck4fk6XG55HTV0DcChKWZcI="
             }
           },
-          "SetLambdaVersionAIh6u79BcBd1TTEtpanyoIAZZEDJZ8j7CbQNOtAZWI": {
+          "SetLambdaVersion39lRLE2UbpeCCZ0dZZDgwxI4113rMeNy6IDYRLAXRE": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "SetLambdaFunction"
               },
-              "CodeSha256": "rcQJMO8KQ3aTwsJAzxE/7Ey3FvKl9CQdFykaXtiaefs="
+              "CodeSha256": "1YAm4uDKsAkw+rc8MX51ck4fk6XG55HTV0DcChKWZcI="
             }
           },
           "ApiGatewayRestApi": {
@@ -341,7 +341,7 @@
               "SetLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1742739619879": {
+          "ApiGatewayDeployment1742762653691": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -439,7 +439,7 @@
           "FindLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "FindLambdaVersion6ljq3hn3qQEL1pOOpZVgeuOKv2MQTdMfTsbqKnfnLsU"
+              "Ref": "FindLambdaVersionThBQ5l9pMyy1aRbLVALW7dqLMOVelldgQc8Zork0UI"
             },
             "Export": {
               "Name": "sls-desafio-bgc-dev-FindLambdaFunctionQualifiedArn"
@@ -448,7 +448,7 @@
           "SetLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "SetLambdaVersionAIh6u79BcBd1TTEtpanyoIAZZEDJZ8j7CbQNOtAZWI"
+              "Ref": "SetLambdaVersion39lRLE2UbpeCCZ0dZZDgwxI4113rMeNy6IDYRLAXRE"
             },
             "Export": {
               "Name": "sls-desafio-bgc-dev-SetLambdaFunctionQualifiedArn"
@@ -506,7 +506,7 @@
         "timeout": 6,
         "runtime": "nodejs16.x",
         "vpc": {},
-        "versionLogicalId": "FindLambdaVersion6ljq3hn3qQEL1pOOpZVgeuOKv2MQTdMfTsbqKnfnLsU"
+        "versionLogicalId": "FindLambdaVersionThBQ5l9pMyy1aRbLVALW7dqLMOVelldgQc8Zork0UI"
       },
       "set": {
         "handler": "src/handlers/post.set",
@@ -528,7 +528,7 @@
         "timeout": 6,
         "runtime": "nodejs16.x",
         "vpc": {},
-        "versionLogicalId": "SetLambdaVersionAIh6u79BcBd1TTEtpanyoIAZZEDJZ8j7CbQNOtAZWI"
+        "versionLogicalId": "SetLambdaVersion39lRLE2UbpeCCZ0dZZDgwxI4113rMeNy6IDYRLAXRE"
       }
     },
     "configValidationMode": "warn",
@@ -547,7 +547,7 @@
     "layers": {}
   },
   "package": {
-    "artifactDirectoryName": "serverless/desafio-bgc/dev/1742739629361-2025-03-23T14:20:29.361Z",
+    "artifactDirectoryName": "serverless/desafio-bgc/dev/1742762663584-2025-03-23T20:44:23.584Z",
     "artifact": "desafio-bgc.zip"
   }
 }
