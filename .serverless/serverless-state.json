@@ -13,7 +13,9 @@
         {
           "Effect": "Allow",
           "Action": [
-            "dynamodb:GetItem"
+            "dynamodb:Query",
+            "dynamodb:GetItem",
+            "dynamodb:Scan"
           ],
           "Resource": "arn:aws:dynamodb:us-east-1:*:table/ProdutosMaisVendidosPorCategoria"
         },
@@ -134,7 +136,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-us-east-1-19c91376-897c",
-                "S3Key": "serverless/desafio-bgc/dev/1742676155749-2025-03-22T20:42:35.749Z/desafio-bgc.zip"
+                "S3Key": "serverless/desafio-bgc/dev/1742737719043-2025-03-23T13:48:39.043Z/desafio-bgc.zip"
               },
               "Handler": "src/handlers/handler.find",
               "Runtime": "nodejs16.x",
@@ -162,7 +164,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-us-east-1-19c91376-897c",
-                "S3Key": "serverless/desafio-bgc/dev/1742676155749-2025-03-22T20:42:35.749Z/desafio-bgc.zip"
+                "S3Key": "serverless/desafio-bgc/dev/1742737719043-2025-03-23T13:48:39.043Z/desafio-bgc.zip"
               },
               "Handler": "src/handlers/handler.set",
               "Runtime": "nodejs16.x",
@@ -185,24 +187,24 @@
               "SetLogGroup"
             ]
           },
-          "FindLambdaVersionIBTkkLLqo1i4A2dVgc4GnHxVIEfuUlkW82K4mS1dkZI": {
+          "FindLambdaVersionBZGny5VU26C73Q4oj9EOk42DGLseoUbr7fGexgncT4": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "FindLambdaFunction"
               },
-              "CodeSha256": "yx8IWmVWWsXJ87N+1j/DMZ6t/1mWMpYt22YWU1n1aNA="
+              "CodeSha256": "Vaf0UCr74luvIDesl5QtL4SkqNUJ90q7Z7glo/7KHPk="
             }
           },
-          "SetLambdaVersionJC4oYIPdjx0wWY7nM4rqKVaZzgVDOvNGVbUbOwjPU": {
+          "SetLambdaVersion1QMXQyYZWq70exoZHRlqDIMAD6V6ol7yABROwYBE": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "SetLambdaFunction"
               },
-              "CodeSha256": "yx8IWmVWWsXJ87N+1j/DMZ6t/1mWMpYt22YWU1n1aNA="
+              "CodeSha256": "Vaf0UCr74luvIDesl5QtL4SkqNUJ90q7Z7glo/7KHPk="
             }
           },
           "ApiGatewayRestApi": {
@@ -339,7 +341,7 @@
               "SetLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1742676146762": {
+          "ApiGatewayDeployment1742737709701": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -437,7 +439,7 @@
           "FindLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "FindLambdaVersionIBTkkLLqo1i4A2dVgc4GnHxVIEfuUlkW82K4mS1dkZI"
+              "Ref": "FindLambdaVersionBZGny5VU26C73Q4oj9EOk42DGLseoUbr7fGexgncT4"
             },
             "Export": {
               "Name": "sls-desafio-bgc-dev-FindLambdaFunctionQualifiedArn"
@@ -446,7 +448,7 @@
           "SetLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "SetLambdaVersionJC4oYIPdjx0wWY7nM4rqKVaZzgVDOvNGVbUbOwjPU"
+              "Ref": "SetLambdaVersion1QMXQyYZWq70exoZHRlqDIMAD6V6ol7yABROwYBE"
             },
             "Export": {
               "Name": "sls-desafio-bgc-dev-SetLambdaFunctionQualifiedArn"
@@ -504,7 +506,7 @@
         "timeout": 6,
         "runtime": "nodejs16.x",
         "vpc": {},
-        "versionLogicalId": "FindLambdaVersionIBTkkLLqo1i4A2dVgc4GnHxVIEfuUlkW82K4mS1dkZI"
+        "versionLogicalId": "FindLambdaVersionBZGny5VU26C73Q4oj9EOk42DGLseoUbr7fGexgncT4"
       },
       "set": {
         "handler": "src/handlers/handler.set",
@@ -526,7 +528,7 @@
         "timeout": 6,
         "runtime": "nodejs16.x",
         "vpc": {},
-        "versionLogicalId": "SetLambdaVersionJC4oYIPdjx0wWY7nM4rqKVaZzgVDOvNGVbUbOwjPU"
+        "versionLogicalId": "SetLambdaVersion1QMXQyYZWq70exoZHRlqDIMAD6V6ol7yABROwYBE"
       }
     },
     "configValidationMode": "warn",
@@ -545,7 +547,7 @@
     "layers": {}
   },
   "package": {
-    "artifactDirectoryName": "serverless/desafio-bgc/dev/1742676155749-2025-03-22T20:42:35.749Z",
+    "artifactDirectoryName": "serverless/desafio-bgc/dev/1742737719043-2025-03-23T13:48:39.043Z",
     "artifact": "desafio-bgc.zip"
   }
 }

@@ -18,7 +18,10 @@ async function scrap_ThreeItens(category, link) {
         const products = [];
         document.querySelectorAll('div.p13n-sc-uncoverable-faceout').forEach((onlyItem, index) => {
             if (index < 3) {
-                const itemName = onlyItem.querySelector('div._cDEzb_p13n-sc-css-line-clamp-3_g3dy1')?.textContent?.trim() || "Sem título";
+                const titleElement = onlyItem.querySelector('div._cDEzb_p13n-sc-css-line-clamp-1_1Fn1y, ' +
+                    'div._cDEzb_p13n-sc-css-line-clamp-2_EWgCb, ' +
+                    'div._cDEzb_p13n-sc-css-line-clamp-3_g3dy1');
+                const itemName = titleElement?.textContent?.trim() || "Sem título";
                 const itemLink = onlyItem.querySelector('a')?.getAttribute('href') || "#";
                 const itemPrice = onlyItem.querySelector('span[class*="price"], span.a-price-whole')?.textContent?.trim() || "Preço não encontrado";
                 const itemRating = onlyItem.querySelector('span.a-icon-alt')?.textContent?.trim() || "Sem avaliação";
@@ -35,6 +38,7 @@ async function scrap_ThreeItens(category, link) {
         });
         return products;
     });
+    console.log(result);
     //inserir os produtos no banco de dados
     for (let product_aux of result) {
         await (0, dynamo_js_1.inserirProduto)('ProdutosMaisVendidosPorCategoria', category, product_aux);
@@ -59,7 +63,7 @@ async function scrap_categories() {
         });
         return sections;
     });
-    console.log(categories);
+    // console.log(categories);
     await browser.close();
     return categories;
 }

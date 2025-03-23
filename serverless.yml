@@ -8,8 +8,11 @@ provider:
   iamRoleStatements:
     - Effect: Allow
       Action:
+        - dynamodb:Query
         - dynamodb:GetItem
+        - dynamodb:Scan
       Resource: arn:aws:dynamodb:${self:provider.region}:*:table/ProdutosMaisVendidosPorCategoria
+    
     - Effect: Allow
       Action:
         - lambda:InvokeFunction

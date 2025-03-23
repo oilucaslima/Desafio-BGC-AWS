@@ -1,5 +1,6 @@
 import puppeteer from 'puppeteer';
 import { inserirProduto } from '../services/dynamo.js';
+import { getItemName } from '../services/functions.js';
 
 export async function scrap_ThreeItens(category: string, link: string) {
     //Responsavel por retornar os 3 produtos mais vendidos dessa categoria
@@ -14,7 +15,13 @@ export async function scrap_ThreeItens(category: string, link: string) {
         
         document.querySelectorAll('div.p13n-sc-uncoverable-faceout').forEach((onlyItem, index) => {
             if(index < 3) {
-                const itemName = onlyItem.querySelector('div._cDEzb_p13n-sc-css-line-clamp-3_g3dy1')?.textContent?.trim() || "Sem título";
+                const titleElement = onlyItem.querySelector(
+                    'div._cDEzb_p13n-sc-css-line-clamp-1_1Fn1y, ' + 
+                    'div._cDEzb_p13n-sc-css-line-clamp-2_EWgCb, ' + 
+                    'div._cDEzb_p13n-sc-css-line-clamp-3_g3dy1'
+                );
+                const itemName = titleElement?.textContent?.trim() || "Sem título";
+            
                 const itemLink = onlyItem.querySelector('a')?.getAttribute('href') || "#";
                 const itemPrice = onlyItem.querySelector('span[class*="price"], span.a-price-whole')?.textContent?.trim() || "Preço não encontrado";
                 const itemRating = onlyItem.querySelector('span.a-icon-alt')?.textContent?.trim() || "Sem avaliação";
@@ -33,6 +40,8 @@ export async function scrap_ThreeItens(category: string, link: string) {
 
         return products;
     });
+
+    console.log(result);
 
     //inserir os produtos no banco de dados
     for(let product_aux of result) 
@@ -59,19 +68,15 @@ export async function scrap_categories() {
         
         document.querySelectorAll('div[role="treeitem"] a').forEach((category) => {
             sections.push({ 
-                
                 category: category.textContent?.trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "") || "Sem título",
                 link: category.getAttribute('href') || "#"
             });
         });
 
-        
-
         return sections;
     });
 
-    console.log(categories);
-
+    // console.log(categories);
     await browser.close();
     return categories;
 }
