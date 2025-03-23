@@ -4,7 +4,7 @@ exports.inserirProduto = exports.criarTabela = void 0;
 const client_dynamodb_1 = require("@aws-sdk/client-dynamodb");
 const lib_dynamodb_1 = require("@aws-sdk/lib-dynamodb");
 const client_dynamodb_2 = require("@aws-sdk/client-dynamodb");
-const dynamoDBClient = new client_dynamodb_1.DynamoDBClient({ region: 'us-east-1' }); // Defina a região correta
+const dynamoDBClient = new client_dynamodb_1.DynamoDBClient({ region: 'us-east-1' });
 const docClient = lib_dynamodb_1.DynamoDBDocumentClient.from(dynamoDBClient);
 const criarTabela = async (nomeDaTabela) => {
     try {

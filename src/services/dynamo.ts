@@ -2,7 +2,7 @@ import { DynamoDBClient, CreateTableCommand, ListTablesCommand } from '@aws-sdk/
 import { DynamoDBDocumentClient } from '@aws-sdk/lib-dynamodb';
 import { PutItemCommand, GetItemCommand } from '@aws-sdk/client-dynamodb';
 
-const dynamoDBClient = new DynamoDBClient({ region: 'us-east-1' }); // Defina a região correta
+const dynamoDBClient = new DynamoDBClient({ region: 'us-east-1' }); 
 const docClient = DynamoDBDocumentClient.from(dynamoDBClient);
 
 export const criarTabela = async (nomeDaTabela: string): Promise<void> => {

@@ -1,0 +1,72 @@
+openapi: 3.0.0
+info:
+  title: API de Scraping de Categorias e Produtos
+  version: 1.0.0
+  description: >
+    Esta API realiza scraping em categorias e retorna os 3 produtos mais vendidos de uma categoria selecionada.
+servers:
+  - url: https://t04ef4ijbb.execute-api.us-east-1.amazonaws.com/dev
+paths:
+  /find:
+    get:
+      summary: Obtém os produtos da categoria especificada
+      description: Retorna a categoria e os 3 produtos mais vendidos para o `categoryId` informado.
+      parameters:
+        - in: query
+          name: categoryId
+          schema:
+            type: string
+          required: true
+          description: Nome da categoria a ser consultada sem acentos.
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os produtos da categoria
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  category:
+                    type: string
+                    example: Bebes
+                  products:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          example: Huggies, Fralda Supreme Care, G, 160 fraldas
+                        link:
+                          type: string
+                          format: uri
+                          example: https://www.amazon.com.br/HUGGIES-Fralda-Supreme-Care-Vermelho/dp/B0BFXKZQ2Y
+                        price:
+                          type: string
+                          example: R$ 183,41
+                        rating:
+                          type: string
+                          example: "4,8 de 5 estrelas"
+                        rank:
+                          type: string
+                          example: "1"
+        '400':
+          description: Requisição inválida
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Parâmetro 'categoryId' é obrigatório."
+        '500':
+          description: Erro interno do servidor
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Erro ao executar o scraping."

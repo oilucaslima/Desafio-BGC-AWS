@@ -16,13 +16,20 @@ O desafio consiste em criar um sistema que retorne os três primeiros produtos d
 
 # Documentação
 
-<p align="justify">
-Segue abaixo alguns links que podem ser úteis para compreensão da tarefa:
+Abaixo estão alguns links importantes para ajudar na compreensão da tarefa e no uso das ferramentas envolvidas:
 
-- [Diário de Bordo](https://docs.google.com/document/d/1eEM56RRZlDFTrcXQE7txQXtcWO5pzMAcksMEC3rvrUc/edit?usp=sharing)
-- [Comandos Úteis](https://docs.google.com/document/d/1CZrg0useXKoIFeijGeDK3NSPSFtjZqvzzm9dakc9J_U/edit?usp=sharing)
-- [Documentação da API](#)
-- [Video de exemplificação](#)
+- [Diário de Bordo](https://docs.google.com/document/d/1eEM56RRZlDFTrcXQE7txQXtcWO5pzMAcksMEC3rvrUc/edit?usp=sharing)  
+  Registros detalhados do progresso e das etapas realizadas durante o desenvolvimento.
+
+- [Comandos Úteis](https://docs.google.com/document/d/1CZrg0useXKoIFeijGeDK3NSPSFtjZqvzzm9dakc9J_U/edit?usp=sharing)  
+  Lista de comandos essenciais para facilitar a execução das tarefas.
+
+- [Documentação da API](#)  
+  Para acessar, inicie a aplicação e acesse `localhost:3000`. Certifique-se de que a porta esteja disponível antes de executar.
+
+- [Vídeo de Exemplificação](#)  
+  Um vídeo explicativo sobre como utilizar o sistema e seus principais recursos.
+
 
 # Ferramentas Utilizadas
 
@@ -31,9 +38,10 @@ Segue abaixo alguns links que podem ser úteis para compreensão da tarefa:
   <img src="imgs/dynamo.png" width="70" height="70">
   <img src="imgs/apigateway.png" width="70" height="70">
   <img src="imgs/serverless.png" width="70" height="70">
+  <img src="imgs/swagger.png" width="70" height="70">
 </p>
 
-A pedido da BGC, foi utilizado o `Node.js/TypeScript` para o desenvolvimento do back-end, junto com as ferramentas disponibilizadas pela AWS, como o `DynamoDB` para a persistência dos dados, `Lambda` para a execução da função de busca de categorias e o `API Gateway` para a comunicação das APIs. O `Serverless Framework` também foi utilizado para a automação do processo de deploy.
+A pedido da BGC, foi utilizado o `Node.js/TypeScript` para o desenvolvimento do back-end, junto com as ferramentas disponibilizadas pela AWS, como o `DynamoDB` para a persistência dos dados, `Lambda` para a execução da função de busca de categorias e o `API Gateway` para a comunicação das APIs. O `Serverless Framework` também foi utilizado para a automação do processo de deploy. Ademais foi utilizado o `Swagger` para documentar a API.
 
 # Implementação
 
@@ -88,8 +96,6 @@ Para executar o projeto localmente, utilize os seguintes comandos dentro da past
 Certifique-se de ter todas as dependências instaladas antes de executar os comandos, utilizando o `npm install` para garantir que todas as bibliotecas estejam corretamente configuradas.
 
 Após o deploy ou execução local, você pode acessar a API diretamente pelo navegador. Ao fazer isso, é necessário passar o parâmetro `categoryId` (sem acentuação) para realizar a solicitação corretamente.
-
-
 
 # Contatos
 <a>
