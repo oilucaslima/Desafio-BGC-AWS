@@ -22,14 +22,14 @@ provider:
 
 functions:
   find:
-    handler: src/handlers/handler.find
+    handler: src/handlers/get.find
     events:
       - http:
           path: find
           method: get
           
   set:
-    handler: src/handlers/handler.set
+    handler: src/handlers/post.set
     events:
       - http:
           path: set
