@@ -17,8 +17,7 @@ export async function scrap_ThreeItens(category: string, link: string) {
             if(index < 3) {
                 const titleElement = onlyItem.querySelector(
                     'div._cDEzb_p13n-sc-css-line-clamp-1_1Fn1y, ' + 
-                    'div._cDEzb_p13n-sc-css-line-clamp-2_EWgCb, ' + 
-                    'div._cDEzb_p13n-sc-css-line-clamp-3_g3dy1'
+                                                                                                                                                                                                                                                                                                                                                                        'div._cDEzb_p13n-sc-css-line-clamp-3_g3dy1'
                 );
                 const itemName = titleElement?.textContent?.trim() || "Sem título";
             

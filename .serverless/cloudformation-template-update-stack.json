@@ -90,13 +90,6 @@
                     "arn:aws:lambda:us-east-1:*:function:desafio-bgc-dev-find",
                     "arn:aws:lambda:us-east-1:*:function:desafio-bgc-dev-set"
                   ]
-                },
-                {
-                  "Effect": "Allow",
-                  "Action": [
-                    "lambda:GetLayerVersion"
-                  ],
-                  "Resource": "arn:aws:lambda:us-east-1:123456789012:layer:chrome-aws-lambda:1"
                 }
               ]
             }
@@ -123,7 +116,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-us-east-1-19c91376-897c",
-          "S3Key": "serverless/desafio-bgc/dev/1742739467089-2025-03-23T14:17:47.089Z/desafio-bgc.zip"
+          "S3Key": "serverless/desafio-bgc/dev/1742739629361-2025-03-23T14:20:29.361Z/desafio-bgc.zip"
         },
         "Handler": "src/handlers/get.find",
         "Runtime": "nodejs16.x",
@@ -151,7 +144,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-us-east-1-19c91376-897c",
-          "S3Key": "serverless/desafio-bgc/dev/1742739467089-2025-03-23T14:17:47.089Z/desafio-bgc.zip"
+          "S3Key": "serverless/desafio-bgc/dev/1742739629361-2025-03-23T14:20:29.361Z/desafio-bgc.zip"
         },
         "Handler": "src/handlers/post.set",
         "Runtime": "nodejs16.x",
@@ -168,33 +161,30 @@
             "IamRoleLambdaExecution",
             "Arn"
           ]
-        },
-        "Layers": [
-          "arn:aws:lambda:us-east-1:123456789012:layer:chrome-aws-lambda:1"
-        ]
+        }
       },
       "DependsOn": [
         "SetLogGroup"
       ]
     },
-    "FindLambdaVersionXLPnaqolLoA6dQQ7A99dkqJz9dd1Yh0j9C0T6i8k": {
+    "FindLambdaVersion6ljq3hn3qQEL1pOOpZVgeuOKv2MQTdMfTsbqKnfnLsU": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "FindLambdaFunction"
         },
-        "CodeSha256": "i4xMPJZrJ/UTjwQp9wbhsQK59YMS68XrBuVWI0/nClk="
+        "CodeSha256": "rcQJMO8KQ3aTwsJAzxE/7Ey3FvKl9CQdFykaXtiaefs="
       }
     },
-    "SetLambdaVersionIM96xQyhbAB7lmx2JxBBvrjoaSPrdFyZWfKcW2Vo0": {
+    "SetLambdaVersionAIh6u79BcBd1TTEtpanyoIAZZEDJZ8j7CbQNOtAZWI": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "SetLambdaFunction"
         },
-        "CodeSha256": "i4xMPJZrJ/UTjwQp9wbhsQK59YMS68XrBuVWI0/nClk="
+        "CodeSha256": "rcQJMO8KQ3aTwsJAzxE/7Ey3FvKl9CQdFykaXtiaefs="
       }
     },
     "ApiGatewayRestApi": {
@@ -331,7 +321,7 @@
         "SetLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1742739457251": {
+    "ApiGatewayDeployment1742739619879": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -429,7 +419,7 @@
     "FindLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "FindLambdaVersionXLPnaqolLoA6dQQ7A99dkqJz9dd1Yh0j9C0T6i8k"
+        "Ref": "FindLambdaVersion6ljq3hn3qQEL1pOOpZVgeuOKv2MQTdMfTsbqKnfnLsU"
       },
       "Export": {
         "Name": "sls-desafio-bgc-dev-FindLambdaFunctionQualifiedArn"
@@ -438,7 +428,7 @@
     "SetLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "SetLambdaVersionIM96xQyhbAB7lmx2JxBBvrjoaSPrdFyZWfKcW2Vo0"
+        "Ref": "SetLambdaVersionAIh6u79BcBd1TTEtpanyoIAZZEDJZ8j7CbQNOtAZWI"
       },
       "Export": {
         "Name": "sls-desafio-bgc-dev-SetLambdaFunctionQualifiedArn"

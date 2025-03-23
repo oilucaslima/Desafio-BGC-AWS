@@ -48,9 +48,6 @@
         },
         "set": {
           "handler": "src/handlers/post.set",
-          "layers": [
-            "arn:aws:lambda:us-east-1:123456789012:layer:chrome-aws-lambda:1"
-          ],
           "events": [
             {
               "http": {
@@ -100,9 +97,9 @@
       "serviceProvider": null,
       "instanceParameters": null
     },
-    "serviceRawFile": "service: desafio-bgc\n\nprovider:\n  name: aws\n  runtime: nodejs16.x\n  stage: dev\n  region: us-east-1\n  iamRoleStatements:\n    - Effect: Allow\n      Action:\n        - dynamodb:Query\n        - dynamodb:GetItem\n        - dynamodb:Scan\n      Resource: arn:aws:dynamodb:${self:provider.region}:*:table/ProdutosMaisVendidosPorCategoria\n    \n    - Effect: Allow\n      Action:\n        - lambda:InvokeFunction\n      Resource:\n        - arn:aws:lambda:${self:provider.region}:*:function:${self:service}-${self:provider.stage}-find\n        - arn:aws:lambda:${self:provider.region}:*:function:${self:service}-${self:provider.stage}-set\n\nfunctions:\n  find:\n    handler: src/handlers/get.find\n    events:\n      - http:\n          path: find\n          method: get\n          \n  set:\n    handler: src/handlers/post.set\n    layers:\n      - arn:aws:lambda:us-east-1:123456789012:layer:chrome-aws-lambda:1\n    events:\n      - http:\n          path: set\n          method: post\n",
+    "serviceRawFile": "service: desafio-bgc\n\nprovider:\n  name: aws\n  runtime: nodejs16.x\n  stage: dev\n  region: us-east-1\n  iamRoleStatements:\n    - Effect: Allow\n      Action:\n        - dynamodb:Query\n        - dynamodb:GetItem\n        - dynamodb:Scan\n      Resource: arn:aws:dynamodb:${self:provider.region}:*:table/ProdutosMaisVendidosPorCategoria\n    \n    - Effect: Allow\n      Action:\n        - lambda:InvokeFunction\n      Resource:\n        - arn:aws:lambda:${self:provider.region}:*:function:${self:service}-${self:provider.stage}-find\n        - arn:aws:lambda:${self:provider.region}:*:function:${self:service}-${self:provider.stage}-set\n\nfunctions:\n  find:\n    handler: src/handlers/get.find\n    events:\n      - http:\n          path: find\n          method: get\n          \n  set:\n    handler: src/handlers/post.set\n    events:\n      - http:\n          path: set\n          method: post\n",
     "command": [
-      "remove"
+      "info"
     ],
     "options": {},
     "orgId": "9e8578e2-0a35-4857-a826-2ef33a6fe747",
@@ -111,26 +108,26 @@
     "userName": "devlucas",
     "serviceProviderAwsAccountId": "496201017689",
     "serviceProviderAwsCfStackName": "desafio-bgc-dev",
-    "serviceProviderAwsCfStackId": "arn:aws:cloudformation:us-east-1:496201017689:stack/desafio-bgc-dev/3df10500-07eb-11f0-a324-0affed83847b",
-    "serviceProviderAwsCfStackCreated": "2025-03-23T13:32:18.767Z",
-    "serviceProviderAwsCfStackUpdated": "2025-03-23T14:18:03.444Z",
-    "serviceProviderAwsCfStackStatus": "UPDATE_ROLLBACK_COMPLETE",
+    "serviceProviderAwsCfStackId": "arn:aws:cloudformation:us-east-1:496201017689:stack/desafio-bgc-dev/016df9b0-07f2-11f0-b402-124f77678849",
+    "serviceProviderAwsCfStackCreated": "2025-03-23T14:20:43.755Z",
+    "serviceProviderAwsCfStackUpdated": null,
+    "serviceProviderAwsCfStackStatus": "CREATE_COMPLETE",
     "serviceProviderAwsCfStackOutputs": [
       {
         "OutputKey": "SetLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:496201017689:function:desafio-bgc-dev-set:10",
+        "OutputValue": "arn:aws:lambda:us-east-1:496201017689:function:desafio-bgc-dev-set:11",
         "Description": "Current Lambda function version",
         "ExportName": "sls-desafio-bgc-dev-SetLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "FindLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:us-east-1:496201017689:function:desafio-bgc-dev-find:13",
+        "OutputValue": "arn:aws:lambda:us-east-1:496201017689:function:desafio-bgc-dev-find:14",
         "Description": "Current Lambda function version",
         "ExportName": "sls-desafio-bgc-dev-FindLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "ServiceEndpoint",
-        "OutputValue": "https://mb85g7lnyg.execute-api.us-east-1.amazonaws.com/dev",
+        "OutputValue": "https://t04ef4ijbb.execute-api.us-east-1.amazonaws.com/dev",
         "Description": "URL of the service endpoint",
         "ExportName": "sls-desafio-bgc-dev-ServiceEndpoint"
       },

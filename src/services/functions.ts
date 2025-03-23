@@ -21,7 +21,8 @@ export function getNumberInput(maxValue: number): Promise<number> {
 }
 
 export  async function getItemName(page: Page): Promise<string> {
-    try {
+    try 
+    {
         // Espera pelo primeiro seletor que aparecer
         const itemElement: ElementHandle | null = await Promise.race([
             page.waitForSelector('div._cDEzb_p13n-sc-css-line-clamp-1_1Fn1y', { timeout: 60000 }),
@@ -36,7 +37,9 @@ export  async function getItemName(page: Page): Promise<string> {
         const itemText = await itemElement.evaluate(el => el.textContent?.trim() || "Sem título");
 
         return itemText;
-    } catch (error) {
+    } 
+    catch(error) 
+    {
         console.error("Erro ao buscar o título:", error);
         return "Erro ao buscar título";
     }
