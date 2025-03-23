@@ -1,7 +1,7 @@
 # DESAFIO BGC - BRASIL
 
 <p align="justify">
-O desafio consiste em criar um sistema que retorne os três primeiros produtos de cada categoria da página de mais vendidos da Amazon (https://www.amazon.com.br/bestsellers) e disponibilize essas informações por meio de uma API. Para isso, será necessário implementar um web scraper (utilizando Puppeteer) que extraia os dados e preencha um banco de dados utilizado pela API.
+O desafio consiste em criar um sistema que retorne os três primeiros produtos de cada categoria da página de mais vendidos da Amazon (https://www.amazon.com.br/bestsellers) e disponibilize essas informações por meio de uma API. Para isso, foi necessário implementar um web scraper (Puppeteer) que extraia os dados e preencha um banco de dados utilizado pela API.
 </p>
 
 # Sumário
