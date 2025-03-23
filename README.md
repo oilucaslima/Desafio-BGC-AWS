@@ -10,6 +10,7 @@ O desafio consiste em criar um sistema que retorne os três primeiros produtos d
 - [Ferramentas Utilizadas](#ferramentas-utilizadas)
 - [Implementação](#implementação)
 - [Compilação e Execução](#compilação-e-execução)
+- [Considerações finais](#considerações-finais)
 - [Contatos](#contatos)
 
 
@@ -21,6 +22,7 @@ Segue abaixo alguns links que podem ser úteis para compreensão da tarefa:
 - [Diário de Bordo](https://docs.google.com/document/d/1eEM56RRZlDFTrcXQE7txQXtcWO5pzMAcksMEC3rvrUc/edit?usp=sharing)
 - [Comandos Úteis](https://docs.google.com/document/d/1CZrg0useXKoIFeijGeDK3NSPSFtjZqvzzm9dakc9J_U/edit?usp=sharing)
 - [Documentação da API](#)
+- [Video de exemplificação](#)
 
 # Ferramentas Utilizadas
 
@@ -53,6 +55,25 @@ O processo de implementação inclui as seguintes etapas:
 4. **Armazenamento no DynamoDB**: Todos esses dados são então armazenados na tabela `ProdutosMaisVendidosPorCategoria` no DynamoDB para posterior consulta via API.
 
 Essa implementação permite que o sistema capture e armazene dados atualizados sobre os produtos mais vendidos em diferentes categorias, tornando as informações facilmente acessíveis por meio da API.
+
+Para a criação e configuração dos Lambdas, utilizei o arquivo `serverless.yml`. Nesse arquivo, configurei as funções Lambda responsáveis pelas tarefas de recuperação de dados. Cada função foi configurada para ser executada de acordo com os eventos disparados.
+
+A função Lambda `find`, localizada no arquivo `get.ts`, foi desenvolvida para realizar a busca dos três produtos mais vendidos pela categoria passada como parâmetro (o `categoryId`). Essa função retorna todas as informações dos produtos armazenadas no banco de dados DynamoDB.
+
+### Detalhes da função Lambda `find`:
+- **Parâmetro**: O `categoryId` é passado para a função para que ela saiba qual categoria consultar. (deve ser passada sem acentos)
+- **Processo**: A função consulta a tabela `ProdutosMaisVendidosPorCategoria` no DynamoDB.
+- **Retorno**: A função retorna as informações armazenadas no banco, incluindo nome, link, ranking, avaliação e preço dos produtos.
+
+Com essa abordagem, a API é capaz de fornecer dados atualizados sobre os produtos mais vendidos em cada categoria, facilitando o consumo por outras aplicações ou serviços.
+
+# Considerações Finais
+
+A experiência foi extremamente enriquecedora, pois me permitiu aprender mais sobre as ferramentas da AWS e me proporcionou a oportunidade de desenvolver uma aplicação que me colocou em um novo nível de domínio de ferramentas. Encontrei diversas dificuldades ao longo do caminho, mas, com tutoriais, pesquisas e trocas de informações, foi possível entregar o que foi solicitado.
+
+Após alguns testes, percebi que 5 das 29 categorias estão apresentando um erro, o qual não consegui solucionar a tempo. Contudo, acredito que com mais tempo e investigação, seria possível resolver esse problema.
+
+Como possíveis melhorias, destaco a redução do tempo de execução do scraping, que acredito estar levando mais tempo do que o esperado. Além disso, um dos meus objetivos era implementar a função POST, permitindo que fosse possível, por meio de um endpoint, realizar a etapa de preenchimento do banco de dados, sem a necessidade de executá-la localmente.
 
 # Compilação e Execução
 
